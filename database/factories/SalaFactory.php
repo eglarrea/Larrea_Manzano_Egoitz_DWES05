@@ -22,7 +22,6 @@ class SalaFactory extends Factory
     {
         return [
             'idSala' => fake()->randomElement([1,2,3,4], 2,true),
-           // 'idSala' => fake()->unique(),
             'pelicula' => fake()->text()    ,
             'aforo' =>  fake()->numberBetween(50,100),
             'es3d' => fake()->numberBetween(0,1)
