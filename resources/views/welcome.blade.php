@@ -170,7 +170,7 @@
                                     Para los datos de una sala de un cine
                                 </p>
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Tipo llamada:DELETE
+                                    Tipo llamada:PUT
                                 </p>
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                     http://127.0.0.1:8000/api/cines/{idcine}/sala/{idsala}
