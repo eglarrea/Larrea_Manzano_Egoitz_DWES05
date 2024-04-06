@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use PDOException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
@@ -57,6 +58,14 @@ class Handler extends ExceptionHandler
             $respuesta->setError(true);
             $respuesta->setMensajeError("Esa llamada no esta permitida");
             return response()->json([$respuesta], Response::HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        if ($exception instanceof PDOException) {
+            $respuesta=new Respuesta();
+            $respuesta->setStatusCode(500);
+            $respuesta->setError(true);
+            $respuesta->setMensajeError("Error al conectar con la bbdd");
+            return response()->json([$respuesta], Response::HTTP_NOT_FOUND);
         }
         //NotFoundHttpException 
         
