@@ -56,7 +56,7 @@ Actulizar datos del cine
 		"nombre":"Nuevo nombre",
   		"direccion": "direccion1",
   		"mail": "nuevomail@mail2.com",
-  		"telefono": "+1.240.319.3409"
+  		"telefono": "999999999"
 	}
 
 
