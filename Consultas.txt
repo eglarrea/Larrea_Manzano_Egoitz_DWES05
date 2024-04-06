@@ -1,0 +1,67 @@
+------------------------------------------------------------------ GET ------------------------------------------------------------------
+Obtener todos los registros
+url: http://127.0.0.1:8000/api/cines
+
+Obtener los datos de un cine por id
+url: http://127.0.0.1:8000/api/cines/1
+------------------------------------------------------------------ POST ------------------------------------------------------------------
+		
+Alta de un cine con datos completos con ok
+	url: http://127.0.0.1:8000/api/cines
+
+	data:
+	{
+		"nombre": "Cine Yelmo Premium Artea Completo",
+		"direccion": "Peruri Auzoa, 33",
+		"mail": "mail@mail.com",
+		"telefono": "666666666",
+		"salas": [
+			{
+				"idSala": 1,
+				"pelicula": "Los juegos del hambre",
+				"aforo": 100,
+				"es3d": true
+			},
+			{
+				"idSala": 2,
+				"pelicula": "La jungla de cristal",
+				"aforo": 100,
+				"es3d": true
+			}
+      ]
+	}
+------------------------------------------------------------------ PUT ------------------------------------------------------------------
+Actulizar pelicula del un cine que no existe
+	url: http://127.0.0.1:8000/api/cines/100/sala/1
+
+	data:
+	{
+	    "pelicula":"Los juegos del hambre Modificadorrr"
+	}
+
+Actulizar pelicula del un cine que existe
+	url: http://127.0.0.1:8000/api/cines/1/sala/1
+
+	data:
+	{
+	  "pelicula":"Los juegos del hambre Modificadorrr"
+	}
+
+
+Actulizar datos del cine
+	url: http://127.0.0.1:8000/api/cines/1
+
+	data:
+	{
+		"nombre":"Nuevo nombre",
+  		"direccion": "direccion1",
+  		"mail": "nuevomail@mail2.com",
+  		"telefono": "+1.240.319.3409"
+	}
+
+
+
+------------------------------------------------------------------ DELETE ------------------------------------------------------------------
+Eliminar un cine
+
+	url: http://127.0.0.1:8000/api/cines/2
