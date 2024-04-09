@@ -6,6 +6,7 @@ use App\Models\Cine;
 use App\Models\Respuesta;
 use App\Models\Sala;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class SalaController extends Controller
@@ -78,24 +79,18 @@ class SalaController extends Controller
         $respuesta = new Respuesta();
         
         if (!$salaEncontrada){
-            $respuesta->setStatusCode(200);
+            $respuesta->setStatusCode(Response::HTTP_OK);
             $respuesta->setError(true);
             $respuesta->setMensajeError("No existe la sala para ese cine");
             $respuesta->setRespuesta("");
         }else{
-           /*  $salaUpdate= new Sala(array(
-                'idsala' => $sala, 'idcine' => $cine
-            ));*/
             Sala::where('idSala', '=', $sala)->where('idCine', '=', $cine)->update($request->all());
-            $respuesta->setStatusCode(200);
+            $respuesta->setStatusCode(Response::HTTP_OK);
             $respuesta->setError(false);
             $respuesta->setMensajeError("");
             $respuesta->setRespuesta("Los datos de la sala se han actualizado correctamente");
         }        
         return response()->json($respuesta);
-        /*Sala::find($request->id);
-        $var=$request->request->all();
-        $respuesta = new Respuesta();*/
     }
 
     /**
@@ -105,37 +100,4 @@ class SalaController extends Controller
     {
         //
     }
-
-
-    private function createSalaForUpdate(&$sala,$datos){
-        $this->cargarSalaAEntidad($datos,$sala);
-     }
-    
-    private function cargarSalaAEntidad($datos,&$sala){
-        if($this->existeElementoEnArray($datos,'pelicula')==true){
-            $sala->pelicula=$datos['pelicula'];
-        }
-    
-        if($this->existeElementoEnArray($datos,'aforo')==true){
-           $sala->aforo=$datos['aforo'];
-        }
-    
-        if($this->existeElementoEnArray($datos,'es3d')==true){
-            $sala->es3d=$datos['es3d'];
-        
-        }
-    
-     }
-
-
-    private function existeElementoEnArray($objeto,$campo){
-        if(array_key_exists($campo,$objeto)){
-            if($objeto[$campo]!=null){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        return false;
-     }
 }

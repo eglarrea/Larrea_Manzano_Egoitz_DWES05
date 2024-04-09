@@ -6,6 +6,7 @@ use App\Models\Cine;
 use App\Models\Sala;
 use App\Models\Respuesta;
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,7 @@ class CineController extends Controller
         }
 
         $respuesta = new Respuesta();
-        $respuesta->setStatusCode(200);
+        $respuesta->setStatusCode(Response::HTTP_OK);
         $respuesta->setError(false);
         $respuesta->setMensajeError("");
         $respuesta->setRespuesta($array);
@@ -68,7 +69,7 @@ class CineController extends Controller
                 $resultado=app(SalaController::class)->store($request,$cine->id);
                 $cine->salas= $salas;
             }
-            $respuesta->setStatusCode(200);
+            $respuesta->setStatusCode(Response::HTTP_OK);
             $respuesta->setError(false);
             $respuesta->setMensajeError("");
             $respuesta->setRespuesta($cine);
@@ -89,7 +90,7 @@ class CineController extends Controller
     {
 
         $respuesta = new Respuesta();
-        $respuesta->setStatusCode(200);
+        $respuesta->setStatusCode(Response::HTTP_OK);
         $respuesta->setError(false);
         $respuesta->setMensajeError("");
 
@@ -124,7 +125,7 @@ class CineController extends Controller
     {
         $cine->update($request->all());
         $respuesta = new Respuesta();
-        $respuesta->setStatusCode(200);
+        $respuesta->setStatusCode(Response::HTTP_OK);
         $respuesta->setError(false);
         $respuesta->setMensajeError("");
         $respuesta->setRespuesta($cine);
@@ -138,7 +139,7 @@ class CineController extends Controller
     {
         $cine->delete();
         $respuesta = new Respuesta();
-        $respuesta->setStatusCode(200);
+        $respuesta->setStatusCode(Response::HTTP_OK);
         $respuesta->setError(false);
         $respuesta->setMensajeError("");
         $respuesta->setRespuesta("El cine se ha eliminado correctamente");
